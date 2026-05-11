@@ -7,23 +7,43 @@
 <body>
 
     <div class="container">
-        <h1>📚 Productivity Tracker</h1>
+        <div class="header">
+            <span class="icon">⊞</span>
+            <div>
+                <h1>Productivity Tracker</h1>
+                <p>Track your tasks and focus time</p>
+            </div>
+        </div>
 
-        <!-- Task Input -->
-        <input type="text" id="taskInput" placeholder="Enter your task">
-        <button onclick="addTask()">Add</button>
+        <div class="body">
+            <!-- Task Input -->
+            <div class="input-row">
+                <input type="text" id="taskInput" placeholder="Add a new task...">
+                <button onclick="addTask()">+ Add</button>
+            </div>
 
-        <!-- Task List -->
-        <ul id="taskList"></ul>
+            <!-- Progress -->
+            <div class="progress-section">
+                <div class="progress-top">
+                    <span>Progress</span>
+                    <span id="progressCount" class="progress-count">0 / 0 tasks</span>
+                </div>
+                <div class="progress-bg"><div class="progress-fill" id="progressFill"></div></div>
+                <div class="progress-pct" id="progress">0% complete</div>
+            </div>
 
-        <!-- Progress -->
-        <h3 id="progress">Progress: 0% (0/0 tasks completed)</h3>
+            <!-- Task List -->
+            <ul id="taskList"></ul>
 
-        <!-- Timer -->
-        <div class="timer">
-            <h2 id="time">00:00:00</h2>
-            <button onclick="startTimer()">Start</button>
-            <button onclick="stopTimer()">Stop</button>
+            <!-- Timer -->
+            <div class="timer">
+                <span>⏱ Focus Timer</span>
+                <h2 id="time">00:00:00</h2>
+                <div class="timer-btns">
+                    <button class="btn-start" onclick="startTimer()">▶ Start</button>
+                    <button class="btn-stop" onclick="stopTimer()">■ Stop</button>
+                </div>
+            </div>
         </div>
     </div>
 

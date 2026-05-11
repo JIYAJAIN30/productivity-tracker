@@ -1,33 +1,191 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-    font-family: Arial;
-    background: #f4f4f4;
-    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    background: #111118;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .container {
-    width: 300px;
-    margin: auto;
-    margin-top: 50px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
+    width: 400px;
+    background: #1c1c26;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid #2a2a38;
 }
+
+/* Header */
+.header {
+    background: #5b4fd4;
+    padding: 22px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.icon {
+    font-size: 22px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.header h1 { font-size: 18px; font-weight: 600; color: #fff; }
+.header p  { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+
+/* Body */
+.body { padding: 18px; display: flex; flex-direction: column; gap: 16px; }
+
+/* Input */
+.input-row { display: flex; gap: 8px; }
 
 input {
-    padding: 8px;
-    width: 70%;
+    flex: 1;
+    background: #111118;
+    border: 1px solid #2a2a38;
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: #ddd;
+    font-size: 14px;
+    outline: none;
 }
+
+input:focus { border-color: #5b4fd4; }
+input::placeholder { color: #444; }
 
 button {
-    padding: 8px;
-    margin: 5px;
+    background: #5b4fd4;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
+    transition: background 0.15s;
 }
 
-li {
-    list-style: none;
-    margin: 10px 0;
-    background: #eee;
-    padding: 5px;
-    border-radius: 5px;
+button:hover { background: #7060e8; }
+
+/* Progress */
+.progress-section { display: flex; flex-direction: column; gap: 6px; }
+
+.progress-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #888;
 }
+
+.progress-count { color: #7060e8; font-weight: 500; }
+
+.progress-bg {
+    background: #111118;
+    border-radius: 99px;
+    height: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #5b4fd4;
+    border-radius: 99px;
+    transition: width 0.3s ease;
+}
+
+.progress-pct { font-size: 12px; color: #555; text-align: right; }
+
+/* Task List */
+ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+
+li {
+    background: #111118;
+    border: 1px solid #2a2a38;
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-size: 14px;
+    color: #ccc;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+}
+
+li:hover { border-color: #5b4fd4; }
+
+li .check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid #444;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    transition: all 0.15s;
+}
+
+li.done .check { background: #5b4fd4; border-color: #5b4fd4; color: white; }
+li.done .task-text { text-decoration: line-through; color: #555; }
+
+li .task-text { flex: 1; }
+
+li .done-badge {
+    font-size: 11px;
+    background: rgba(91,79,212,0.18);
+    color: #9080f0;
+    padding: 2px 10px;
+    border-radius: 99px;
+    display: none;
+}
+
+li.done .done-badge { display: inline; }
+
+li .del {
+    color: #444;
+    font-size: 16px;
+    line-height: 1;
+    margin-left: 2px;
+    display: none;
+}
+
+li:hover .del { display: inline; }
+li.done .del { display: none !important; }
+
+/* Timer */
+.timer {
+    background: #111118;
+    border: 1px solid #2a2a38;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.timer > span { font-size: 13px; color: #666; }
+
+.timer h2 {
+    font-size: 34px;
+    font-weight: 600;
+    color: #eee;
+    letter-spacing: 3px;
+    font-variant-numeric: tabular-nums;
+}
+
+.timer-btns { display: flex; gap: 8px; }
+
+.btn-start { flex: 1; }
+
+.btn-stop {
+    flex: 1;
+    background: transparent;
+    border: 1px solid #2a2a38;
+    color: #888;
+}
+
+.btn-stop:hover { background: #1c1c26; color: #ccc; }

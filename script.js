@@ -19,17 +19,16 @@ function renderTasks() {
 
     tasks.forEach((task, index) => {
         let li = document.createElement("li");
+        if (task.done) li.classList.add("done");
 
         li.innerHTML = `
-            ${task.text}
-            <button onclick="toggleTask(${index})">✔</button>
-            <button onclick="deleteTask(${index})">❌</button>
+            <span class="check">${task.done ? "✓" : ""}</span>
+            <span class="task-text">${task.text}</span>
+            <span class="done-badge">Done</span>
+            <span class="del" onclick="deleteTask(${index})">🗑</span>
         `;
 
-        if (task.done) {
-            li.style.textDecoration = "line-through";
-            li.style.color = "gray";
-        }
+        li.querySelector(".check").addEventListener("click", () => toggleTask(index));
 
         list.appendChild(li);
     });
@@ -52,47 +51,42 @@ function deleteTask(index) {
 // ➤ Progress Calculation
 function updateProgress() {
     let total = tasks.length;
+    let done = tasks.filter(t => t.done).length;
+    let percent = total === 0 ? 0 : Math.round((done / total) * 100);
 
-    if (total === 0) {
-        document.getElementById("progress").innerText =
-            "Progress: 0% (0/0 tasks completed)";
-        return;
-    }
-
-    let doneTasks = tasks.filter(task => task.done).length;
-    let percent = Math.round((doneTasks / total) * 100);
-
-    document.getElementById("progress").innerText =
-        `Progress: ${percent}% (${doneTasks}/${total} tasks completed)`;
+    document.getElementById("progressFill").style.width = percent + "%";
+    document.getElementById("progressCount").textContent = done + " / " + total + " tasks";
+    document.getElementById("progress").textContent = percent + "% complete";
 }
-
-    
 
 // ⏱️ Timer
 let seconds = 0;
 let timer = null;
 
 function startTimer() {
-    if (timer !== null) return; // prevent multiple timers
-
-    timer = setInterval(() => {
-        seconds++;
-        updateTime();
-    }, 1000);
+    if (timer !== null) {
+        clearInterval(timer);
+        timer = null;
+        document.querySelector(".btn-start").textContent = "▶ Start";
+        return;
+    }
+    timer = setInterval(() => { seconds++; updateTime(); }, 1000);
+    document.querySelector(".btn-start").textContent = "⏸ Pause";
 }
 
 function stopTimer() {
     clearInterval(timer);
     timer = null;
+    seconds = 0;
+    updateTime();
+    document.querySelector(".btn-start").textContent = "▶ Start";
 }
 
 function updateTime() {
     let hrs = Math.floor(seconds / 3600);
     let mins = Math.floor((seconds % 3600) / 60);
     let secs = seconds % 60;
-
-    document.getElementById("time").innerText =
-        `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
+    document.getElementById("time").innerText = `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
 }
 
 function pad(num) {
