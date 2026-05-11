@@ -1,4 +1,4 @@
-let tasks = [];
+let tasks =  JSON.parse(localStorage.getItem("tasks")) || [];
 
 // ➤ Add Task
 function addTask() {
@@ -9,6 +9,7 @@ function addTask() {
 
     tasks.push({ text: taskText, done: false });
     input.value = "";
+    saveTasks();
     renderTasks();
 }
 
@@ -21,7 +22,7 @@ function renderTasks() {
         let li = document.createElement("li");
 
         li.innerHTML = `
-            ${task.text}
+             <span class="task-text">${task.text}</span>
             <button onclick="toggleTask(${index})">✔</button>
             <button onclick="deleteTask(${index})">❌</button>
         `;
@@ -40,6 +41,7 @@ function renderTasks() {
 // ➤ Toggle Task
 function toggleTask(index) {
     tasks[index].done = !tasks[index].done;
+    saveTasks();
     renderTasks();
 }
 
@@ -47,6 +49,11 @@ function toggleTask(index) {
 function deleteTask(index) {
     tasks.splice(index, 1);
     renderTasks();
+}
+
+// ➤ Save Tasks
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 // ➤ Progress Calculation
@@ -98,3 +105,40 @@ function updateTime() {
 function pad(num) {
     return num < 10 ? "0" + num : num;
 }
+
+// ➤ Dark Mode
+
+const themeToggle =
+    document.getElementById("themeToggle");
+
+// Load Saved Theme
+window.onload = () => {
+
+    if (
+        localStorage.getItem("darkMode") === "true"
+    ) {
+
+        document.body.classList.add("dark-mode");
+
+        themeToggle.innerText =
+            "☀";
+    }
+    renderTasks();
+};
+
+// Toggle Theme
+themeToggle.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark-mode");
+
+    let isDark =
+        document.body.classList.contains("dark-mode");
+
+    themeToggle.innerText = isDark
+        ? "☀"
+        : "🌙";
+
+    localStorage.setItem("darkMode", isDark);
+});
+
+renderTasks();

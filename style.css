@@ -1,33 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     background: #f4f4f4;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    transition: 0.3s;
 }
 
 .container {
-    width: 300px;
-    margin: auto;
-    margin-top: 50px;
+    width: 100%;
+    max-width: 450px;
     background: white;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: 0.3s;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 input {
-    padding: 8px;
-    width: 70%;
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
 }
 
 button {
-    padding: 8px;
-    margin: 5px;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+    background: #222;
+    color: white;
+}
+
+button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+#themeToggle {
+    margin-bottom: 20px;
+}
+
+#taskList {
+    margin-top: 15px;
 }
 
 li {
     list-style: none;
-    margin: 10px 0;
     background: #eee;
-    padding: 5px;
-    border-radius: 5px;
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
 }
+
+.task-text {
+    flex: 1;
+    text-align: left;
+    word-break: break-word;
+}
+
+.task-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+#progress {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.timer {
+    margin-top: 25px;
+}
+
+#time {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.timer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dark-mode {
+    background: #121212;
+    color: white;
+}
+
+.dark-mode .container {
+    background: #1e1e1e;
+    color: white;
+}
+
+.dark-mode input {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+}
+
+.dark-mode li {
+    background: #333;
+    color: white;
+}
+
+.dark-mode button {
+    background: #444;
+    color: white;
+}
+
+.dark-mode #themeToggle {
+    background: white;
+    color: black;
+}
+
