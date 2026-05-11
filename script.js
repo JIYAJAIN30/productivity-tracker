@@ -45,8 +45,12 @@ function toggleTask(index) {
 
 // ➤ Delete Task
 function deleteTask(index) {
-    tasks.splice(index, 1);
-    renderTasks();
+    let confirmDelete = confirm("Are you sure you want to delete this task?");
+
+    if (confirmDelete) {
+        tasks.splice(index, 1);
+        renderTasks();
+    }
 }
 
 // ➤ Progress Calculation
@@ -65,8 +69,6 @@ function updateProgress() {
     document.getElementById("progress").innerText =
         `Progress: ${percent}% (${doneTasks}/${total} tasks completed)`;
 }
-
-    
 
 // ⏱️ Timer
 let seconds = 0;
