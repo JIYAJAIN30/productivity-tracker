@@ -1,4 +1,26 @@
 let tasks = [];
+const themeToggle = document.getElementById("themeToggle");
+
+function applyTheme(theme) {
+    const isDark = theme === "dark";
+    document.body.classList.toggle("dark-mode", isDark);
+    themeToggle.innerText = isDark ? "☀️" : "🌙";
+    themeToggle.setAttribute(
+        "aria-label",
+        isDark ? "Switch to light mode" : "Switch to dark mode"
+    );
+}
+
+function toggleTheme() {
+    const currentTheme = document.body.classList.contains("dark-mode") ? "dark" : "light";
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
+
+    localStorage.setItem("theme", nextTheme);
+    applyTheme(nextTheme);
+}
+
+themeToggle.addEventListener("click", toggleTheme);
+applyTheme(localStorage.getItem("theme") || "light");
 
 // ➤ Add Task
 function addTask() {
@@ -27,8 +49,7 @@ function renderTasks() {
         `;
 
         if (task.done) {
-            li.style.textDecoration = "line-through";
-            li.style.color = "gray";
+            li.classList.add("completed");
         }
 
         list.appendChild(li);

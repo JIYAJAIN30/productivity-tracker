@@ -1,7 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial;
     background: #f4f4f4;
+    color: #222;
     text-align: center;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .container {
@@ -11,17 +17,50 @@ body {
     background: white;
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+h1 {
+    margin: 0 0 16px;
+    font-size: 24px;
+}
+
+.theme-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #d8d8d8;
+    background: #fff;
+    color: #222;
+    font-size: 18px;
+    line-height: 1;
 }
 
 input {
     padding: 8px;
     width: 70%;
+    border: 1px solid #cfcfcf;
+    border-radius: 5px;
+    background: #fff;
+    color: #222;
 }
 
 button {
     padding: 8px;
     margin: 5px;
     cursor: pointer;
+    border: 1px solid #cfcfcf;
+    border-radius: 5px;
+    background: #fff;
+    color: #222;
 }
 
 li {
@@ -30,4 +69,41 @@ li {
     background: #eee;
     padding: 5px;
     border-radius: 5px;
+    color: #222;
+}
+
+li.completed {
+    text-decoration: line-through;
+    color: #777;
+}
+
+body.dark-mode {
+    background: #111827;
+    color: #f3f4f6;
+}
+
+body.dark-mode .container {
+    background: #1f2937;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-mode input,
+body.dark-mode button,
+body.dark-mode .theme-toggle {
+    border-color: #4b5563;
+    background: #374151;
+    color: #f9fafb;
+}
+
+body.dark-mode input::placeholder {
+    color: #cbd5e1;
+}
+
+body.dark-mode li {
+    background: #374151;
+    color: #f9fafb;
+}
+
+body.dark-mode li.completed {
+    color: #9ca3af;
 }
