@@ -26,7 +26,14 @@
             <button onclick="stopTimer()">Stop</button>
         </div>
     </div>
-
+         <!-- Delete Task Modal--> 
+              <div id="deleteModal" class="modal hidden">
+        <div class="modal-content">
+            <p id="deleteMessage">Are you sure you want to delete this task?</p>
+            <button onclick="confirmDeleteTask()">Yes, delete</button>
+            <button onclick="closeDeleteModal()">Cancel</button>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
