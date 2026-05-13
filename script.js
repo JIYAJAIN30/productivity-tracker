@@ -1,4 +1,5 @@
 let tasks = [];
+let pendingDeleteIndex = null;
 
 // ➤ Add Task
 function addTask() {
@@ -24,6 +25,8 @@ function renderTasks() {
             ${task.text}
             <button onclick="toggleTask(${index})">✔</button>
             <button onclick="deleteTask(${index})">❌</button>
+            <button onclick="openDeleteModal(${index})">❌</button>
+
         `;
 
         if (task.done) {
@@ -43,9 +46,23 @@ function toggleTask(index) {
     renderTasks();
 }
 
-// ➤ Delete Task
-function deleteTask(index) {
-    tasks.splice(index, 1);
+// ➤ Delete Task UI
+const deleteModal = document.getElementById("deleteModal");
+
+function openDeleteModal(index) {
+    pendingDeleteIndex = index;
+    deleteModal.classList.remove("hidden");
+}
+
+function closeDeleteModal() {
+    pendingDeleteIndex = null;
+    deleteModal.classList.add("hidden");
+}
+
+function confirmDeleteTask() {
+    if (pendingDeleteIndex === null) return;
+    tasks.splice(pendingDeleteIndex, 1);
+    closeDeleteModal();
     renderTasks();
 }
 
