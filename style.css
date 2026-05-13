@@ -2,6 +2,7 @@ body {
     font-family: Arial;
     background: #f4f4f4;
     text-align: center;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -22,6 +23,9 @@ button {
     padding: 8px;
     margin: 5px;
     cursor: pointer;
+    button:hover {
+        opacity: 0.9;
+    }
 }
 
 li {
@@ -30,4 +34,30 @@ li {
     background: #eee;
     padding: 5px;
     border-radius: 5px;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background: #121212;
+    color: white;
+}
+
+body.dark-mode .container {
+    background: #1e1e1e;
+}
+
+body.dark-mode li {
+    background: #333;
+}
+
+body.dark-mode input {
+    background: #2a2a2a;
+    color: white;
+    border: 1px solid #555;
+}
+
+body.dark-mode button {
+    background: #444;
+    color: white;
+    border: none;
 }

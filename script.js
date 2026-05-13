@@ -98,3 +98,24 @@ function updateTime() {
 function pad(num) {
     return num < 10 ? "0" + num : num;
 }
+
+// Dark Mode Toggle
+const darkModeBtn = document.getElementById("darkModeToggle");
+
+// Load dark mode preference
+if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+}
+updateDarkModeButton();
+
+darkModeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    const isDark = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDark);
+    updateDarkModeButton();
+});
+
+function updateDarkModeButton() {
+    const isDark = document.body.classList.contains('dark-mode');
+    darkModeBtn.innerHTML = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+}
