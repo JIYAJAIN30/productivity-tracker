@@ -55,10 +55,20 @@ button {
     cursor: pointer;
 }
 
+/* ✅ Improved Task Styling */
 li {
     list-style: none;
     margin: 10px 0;
     background: var(--task-bg);
-    padding: 5px;
+    padding: 10px;
     border-radius: 5px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ✅ Task Buttons Alignment */
+li button {
+    margin-left: 5px;
 }
