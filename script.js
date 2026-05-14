@@ -1,5 +1,29 @@
 let tasks = [];
 
+// 🌙 Dark Mode Toggle
+const themeToggle = document.getElementById("theme-toggle");
+
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+
+    // Save theme preference
+    if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+    } else {
+        localStorage.setItem("theme", "light");
+    }
+});
+
+// Load saved theme on refresh
+window.addEventListener("load", () => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+});
+
+
 // ➤ Add Task
 function addTask() {
     let input = document.getElementById("taskInput");
@@ -66,14 +90,13 @@ function updateProgress() {
         `Progress: ${percent}% (${doneTasks}/${total} tasks completed)`;
 }
 
-    
 
 // ⏱️ Timer
 let seconds = 0;
 let timer = null;
 
 function startTimer() {
-    if (timer !== null) return; // prevent multiple timers
+    if (timer !== null) return;
 
     timer = setInterval(() => {
         seconds++;
