@@ -1,21 +1,52 @@
+:root {
+    --bg-color: #f4f4f4;
+    --container-color: white;
+    --text-color: black;
+    --task-bg: #eee;
+}
+
+body.dark-mode {
+    --bg-color: #222;
+    --container-color: #333;
+    --text-color: white;
+    --task-bg: #444;
+}
+
 body {
     font-family: Arial;
-    background: #f4f4f4;
+    background: var(--bg-color);
+    color: var(--text-color);
     text-align: center;
+    transition: 0.3s;
+}
+
+/* 🌙 Theme Toggle Button */
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
 }
 
 .container {
     width: 300px;
     margin: auto;
     margin-top: 50px;
-    background: white;
+    background: var(--container-color);
     padding: 20px;
     border-radius: 10px;
+    transition: 0.3s;
 }
 
 input {
     padding: 8px;
     width: 70%;
+    background: white;
+    color: black;
 }
 
 button {
@@ -24,10 +55,20 @@ button {
     cursor: pointer;
 }
 
+/* ✅ Improved Task Styling */
 li {
     list-style: none;
     margin: 10px 0;
-    background: #eee;
-    padding: 5px;
+    background: var(--task-bg);
+    padding: 10px;
     border-radius: 5px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ✅ Task Buttons Alignment */
+li button {
+    margin-left: 5px;
 }
