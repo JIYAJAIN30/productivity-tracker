@@ -98,3 +98,26 @@ function updateTime() {
 function pad(num) {
     return num < 10 ? "0" + num : num;
 }
+//stop timer when task is completed
+function stop() {
+    let total = tasks.length;
+    if (total === 0) return;
+    let doneTasks = tasks.filter(task => task.done).length;
+    let percent = Math.round((doneTasks / total) * 100);
+
+    if (percent === 100) {
+        stopTimer();
+    }
+}
+  function toggleTask(index) {
+    tasks[index].done = !tasks[index].done;
+    renderTasks();
+    stop();
+}
+// Restart
+function Restart(){
+    seconds=0;
+   updateTime();
+    tasks = [];
+   renderTasks();
+}
