@@ -98,3 +98,8 @@ function updateTime() {
 function pad(num) {
     return num < 10 ? "0" + num : num;
 }
+
+
+//date and time 
+  const today = new Date();
+  document.getElementById("date").innerText = today.toDateString();
