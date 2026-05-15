@@ -6,12 +6,24 @@ function addTask() {
     let taskText = input.value.trim();
 
     if (taskText === "") return;
+//We remove all extra spaces group of strings and trim in single"" ",
+    const normalized=taskText.replace(/\s+/g, " ").toLowerCase();
+
+    // is any duplicate occurs we simple replace it 
+    const isDuplicate = tasks.some(task =>
+        task.text.replace(/\s+/g, " ").toLowerCase() === normalized
+    );
+    // This our checker func to help if already existed don't include and throw alert message.
+    if (isDuplicate) {
+        alert(`"${taskText}" already exists in your list!`);
+        return;
+    }
+    //If all test pass then push into tasks.
 
     tasks.push({ text: taskText, done: false });
     input.value = "";
     renderTasks();
 }
-
 // ➤ Render Tasks
 function renderTasks() {
     let list = document.getElementById("taskList");

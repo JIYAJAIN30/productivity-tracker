@@ -5,27 +5,42 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    /* Nav-Bar link to style.css no any functionality okay */   
+    <nav class="navbar">
+        <h2>📚 Productivity Tracker</h2>
+
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Tasks</a></li>
+            <li><a href="#">Timer</a></li>
+        </ul>
+    </nav>
 
     <div class="container">
-        <h1>📚 Productivity Tracker</h1>
 
-        <!-- Task Input -->
+        <h1>Stay Productive 🚀</h1>
+
+        <div class="task-box">
+          
         <input type="text" id="taskInput" placeholder="Enter your task">
         <button onclick="addTask()">Add</button>
 
-        <!-- Task List -->
+            <button>Add</button>
+        </div>
+
         <ul id="taskList"></ul>
 
-        <!-- Progress -->
-        <h3 id="progress">Progress: 0% (0/0 tasks completed)</h3>
 
-        <!-- Timer -->
+         <h3 id="progress">Progress: 0% (0/0 tasks completed)</h3>
+
         <div class="timer">
             <h2 id="time">00:00:00</h2>
             <button onclick="startTimer()">Start</button>
             <button onclick="stopTimer()">Stop</button>
         </div>
     </div>
+
+</body>
 
     <script src="script.js"></script>
 </body>
