@@ -1,33 +1,237 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial;
-    background: #f4f4f4;
-    text-align: center;
+  font-family: Arial;
+  background: #f4f4f4;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/*Navbar styling*/
+.navbar {
+  position: fixed;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  top: 10px;
+  z-index: 100;
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.25),
+    0 0 12px rgba(59, 130, 246, 0.25);
+  background: rgba(60, 63, 75, 0.95);
+  border: 2px solid #3b82f6;
+}
+
+.nav-links li {
+  transition: all 0.3s ease;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  padding: 12px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  gap: 80px;
+  list-style: none;
+}
+
+.nav-links li:hover {
+  background: #3b82f6;
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 6px 15px rgba(59, 130, 246, 0.45),
+    0 0 10px rgba(59, 130, 246, 0.6);
+}
+
+.navbar ul li a:active {
+  transform: scale(0.96);
+  color: aqua;
+}
+
+.navbar:hover {
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(59, 130, 246, 0.4);
+}
+
+.hamburger {
+  display: none;
+  font-size: 15px;
+  cursor: pointer;
 }
 
 .container {
-    width: 300px;
-    margin: auto;
-    margin-top: 50px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
+  margin: auto;
+  margin-top: 150px;
+  width: 300px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 input {
-    padding: 8px;
-    width: 70%;
+  padding: 8px;
+  width: 70%;
 }
 
 button {
-    padding: 8px;
-    margin: 5px;
-    cursor: pointer;
+  padding: 8px;
+  margin: 5px;
+  cursor: pointer;
 }
 
 li {
-    list-style: none;
-    margin: 10px 0;
-    background: #eee;
-    padding: 5px;
-    border-radius: 5px;
+  list-style: none;
+  margin: 10px 0;
+  background: #eee;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/*Footer Styling*/
+
+.footer {
+  margin-left: 0px;
+  width: 100%;
+  margin-top: 55px;
+  background: #0f172a;
+  padding: 30px 5px;
+  background: linear-gradient(180deg, #020617, #0a0f2c);
+  border-top: 1px solid rgba(0, 229, 255, 0.2);
+  box-shadow: 0 -5px 30px rgba(0, 229, 255, 0.05);
+}
+
+.footer-container {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-container h2 {
+  color: #3b82f6;
+  font-family: "Orbitron", sans-serif;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.7);
+}
+
+.footer-container p {
+  font-family: "Poppins", sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.links h4 {
+  font-weight: 600;
+  font-family: "Orbitron", sans-serif;
+  color: #3b82f6;
+}
+
+.links p {
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+.About {
+  color: #ff6a00;
+  width: 100%;
+  line-height: 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+.links {
+  display: flex;
+  gap: 40px;
+  margin-top: 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+.links a {
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+}
+
+.resource {
+  line-height: 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* MOBILE responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    top: 12px;
+  }
+
+  .nav-links a {
+    color: black;
+  }
+
+  .logoutbtn {
+    top: 56px;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 120px;
+    right: 0;
+    background: rgb(255, 255, 255);
+    flex-direction: column;
+    width: 50px;
+    display: none;
+    padding: 7px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    gap: 5px;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 100;
+  }
+
+  .nav-links.active {
+    display: flex;
+    transition: all 0.3s ease;
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .hamburger {
+    color: white;
+    display: block;
+    z-index: 200;
+    position: absolute;
+    right: 20px;
+    font-size: 20px;
+    top: 15px;
+  }
+
+  .links {
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .links a {
+    font-size: 9px;
+  }
+
+  .About {
+    font-size: 9px;
+  }
+
+  .resource {
+    line-height: 15px;
+    width: 90px;
+  }
 }
