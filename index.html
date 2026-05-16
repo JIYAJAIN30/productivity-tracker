@@ -1,32 +1,261 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Productivity Tracker</title>
-    <link rel="stylesheet" href="style.css">
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+     Productivity Tracker
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
+
 <body>
 
-    <div class="container">
-        <h1>📚 Productivity Tracker</h1>
+  <!-- GLOW ORBS -->
 
-        <!-- Task Input -->
-        <input type="text" id="taskInput" placeholder="Enter your task">
-        <button onclick="addTask()">Add</button>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
 
-        <!-- Task List -->
-        <ul id="taskList"></ul>
+  <!-- NAVBAR -->
 
-        <!-- Progress -->
-        <h3 id="progress">Progress: 0% (0/0 tasks completed)</h3>
+  <nav class="navbar">
 
-        <!-- Timer -->
-        <div class="timer">
-            <h2 id="time">00:00:00</h2>
-            <button onclick="startTimer()">Start</button>
-            <button onclick="stopTimer()">Stop</button>
-        </div>
+    <h2>
+      Productivity Tracker
+    </h2>
+
+    <ul>
+
+      <li>
+        <a href="#about">
+          Home
+        </a>
+      </li>
+
+      <li>
+        <a href="#tasks">
+          Tasks
+        </a>
+      </li>
+
+      <li>
+        <a href="#focus">
+          Focus
+        </a>
+      </li>
+
+    </ul>
+
+  </nav>
+
+  <!-- ABOUT SECTION -->
+
+  <section
+    id="about"
+    class="about-section"
+  >
+
+    <div class="about-content">
+
+      <!-- LEFT -->
+
+      <div class="about-text">
+
+        <h1>
+          Stay Focused.
+          Stay Productive.
+        </h1>
+
+        <p>
+
+          “Productivity is not about doing more —
+          it’s about doing what matters most.”
+
+          This Productivity Tracker helps you
+          organize your daily goals, stay focused
+          using the Pomodoro technique, and build
+          consistent habits one task at a time.
+
+          Track progress, maintain streaks,
+          and turn small efforts into meaningful
+          achievements every single day.
+
+        </p>
+
+        <a href="#tasks">
+
+          <button class="hero-btn">
+
+            Enter Productivity Space
+
+          </button>
+
+        </a>
+
+      </div>
+
+      <!-- RIGHT -->
+
+      <div class="about-image">
+
+        <img
+          src="productivity.png"
+          alt="Productivity Illustration"
+        >
+
+      </div>
+
     </div>
 
-    <script src="script.js"></script>
+  </section>
+
+  <!-- MAIN CONTENT -->
+
+  <div class="main-container">
+
+    <!-- TASK SECTION -->
+
+    <section
+      id="tasks"
+      class="container"
+    >
+
+      <h1>
+        Task Manager
+      </h1>
+
+      <!-- INPUT SECTION -->
+
+      <div class="input-section">
+
+        <input
+          type="text"
+          id="taskInput"
+          placeholder="Enter your task..."
+        >
+
+        <button onclick="addTask()">
+
+          Add Task
+
+        </button>
+
+        <button
+          class="reset-btn"
+          onclick="resetTasks()"
+        >
+
+          Reset
+
+        </button>
+
+      </div>
+
+      <!-- FINALIZE BUTTON -->
+
+      <button
+        class="finalize-btn"
+        onclick="finalizeTasks()"
+      >
+
+        Finalize Tasks
+
+      </button>
+
+      <!-- TASK LIST -->
+
+      <ul id="taskList"></ul>
+
+      <!-- PROGRESS BAR -->
+
+      <div class="progress-container">
+
+        <div
+          class="progress-bar"
+          id="progressBar"
+        ></div>
+
+      </div>
+
+      <p id="progressText">
+        0% Completed
+      </p>
+
+      <!-- STREAK -->
+
+      <div class="streak">
+
+        Daily Streak:
+        <span id="streak">0</span>
+
+      </div>
+
+    </section>
+
+    <!-- TIMER SECTION -->
+
+    <section
+      id="focus"
+      class="timer-box"
+    >
+
+      <h1>
+        Pomodoro Focus Timer
+      </h1>
+
+      <div
+        class="mode"
+        id="mode"
+      >
+
+        Focus Time
+
+      </div>
+
+      <div
+        class="time"
+        id="time"
+      >
+
+        25:00
+
+      </div>
+
+      <div class="timer-buttons">
+
+        <button onclick="startTimer()">
+          Start
+        </button>
+
+        <button onclick="pauseTimer()">
+          Pause
+        </button>
+
+        <button onclick="resetTimer()">
+          Reset
+        </button>
+
+      </div>
+
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+
 </body>
 </html>

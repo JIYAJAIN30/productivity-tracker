@@ -1,100 +1,388 @@
-let tasks = [];
+/* =========================================
+   SELECT ELEMENTS
+========================================= */
 
-// ➤ Add Task
-function addTask() {
-    let input = document.getElementById("taskInput");
-    let taskText = input.value.trim();
+const taskInput =
+  document.getElementById("taskInput");
 
-    if (taskText === "") return;
+const taskList =
+  document.getElementById("taskList");
 
-    tasks.push({ text: taskText, done: false });
-    input.value = "";
-    renderTasks();
+const progressBar =
+  document.getElementById("progressBar");
+
+const progressText =
+  document.getElementById("progressText");
+
+const streakText =
+  document.getElementById("streak");
+
+/* =========================================
+   STREAK
+========================================= */
+
+let streak = 0;
+
+streakText.innerText = streak;
+
+/* =========================================
+   ADD TASK
+========================================= */
+
+function addTask(){
+
+  if(taskInput.value.trim() === ""){
+    return;
+  }
+
+  const li =
+    document.createElement("li");
+
+  li.innerHTML = `
+
+    <span class="task-text">
+      ${taskInput.value}
+    </span>
+
+    <div class="task-buttons">
+
+      <button
+        class="complete-btn"
+        onclick="completeTask(this)">
+
+        Complete
+
+      </button>
+
+      <button
+        class="delete-btn"
+        onclick="deleteTask(this)">
+
+        Delete
+
+      </button>
+
+    </div>
+  `;
+
+  taskList.appendChild(li);
+
+  taskInput.value = "";
+
+  updateProgress();
 }
 
-// ➤ Render Tasks
-function renderTasks() {
-    let list = document.getElementById("taskList");
-    list.innerHTML = "";
+/* =========================================
+   COMPLETE TASK
+========================================= */
 
-    tasks.forEach((task, index) => {
-        let li = document.createElement("li");
+function completeTask(button){
 
-        li.innerHTML = `
-            ${task.text}
-            <button onclick="toggleTask(${index})">✔</button>
-            <button onclick="deleteTask(${index})">❌</button>
-        `;
+  const task =
+    button.closest("li");
 
-        if (task.done) {
-            li.style.textDecoration = "line-through";
-            li.style.color = "gray";
-        }
+  /* Prevent multiple clicks */
 
-        list.appendChild(li);
-    });
+  if(task.classList.contains("completed")){
+    return;
+  }
 
-    updateProgress();
+  /* ADD COMPLETED CLASS */
+
+  task.classList.add("completed");
+
+  /* BUTTON CHANGE */
+
+  button.innerText =
+    "Completed";
+
+  button.disabled = true;
+
+  button.style.background =
+    "#00b894";
+
+  /* UPDATE STREAK */
+
+  streak++;
+
+  streakText.innerText = streak;
+
+  /* UPDATE PROGRESS */
+
+  updateProgress();
+
+  /* CONFETTI */
+
+  confetti();
 }
 
-// ➤ Toggle Task
-function toggleTask(index) {
-    tasks[index].done = !tasks[index].done;
-    renderTasks();
+/* =========================================
+   DELETE TASK
+========================================= */
+
+function deleteTask(button){
+
+  const task =
+    button.closest("li");
+
+  task.remove();
+
+  updateProgress();
 }
 
-// ➤ Delete Task
-function deleteTask(index) {
-    tasks.splice(index, 1);
-    renderTasks();
+/* =========================================
+   RESET TASKS
+========================================= */
+
+function resetTasks(){
+
+  taskList.innerHTML = "";
+
+  progressBar.style.width = "0%";
+
+  progressText.innerText =
+    "0% Completed";
+
+  streak = 0;
+
+  streakText.innerText = streak;
+
+  alert(
+    "All Tasks Reset Successfully!"
+  );
 }
 
-// ➤ Progress Calculation
-function updateProgress() {
-    let total = tasks.length;
+/* =========================================
+   FINALIZE TASKS
+========================================= */
 
-    if (total === 0) {
-        document.getElementById("progress").innerText =
-            "Progress: 0% (0/0 tasks completed)";
-        return;
+function finalizeTasks(){
+
+  updateProgress();
+
+  alert(
+    "Tasks Finalized Successfully!"
+  );
+}
+
+/* =========================================
+   UPDATE PROGRESS
+========================================= */
+
+function updateProgress(){
+
+  const allTasks =
+    document.querySelectorAll(
+      "#taskList li"
+    );
+
+  const completedTasks =
+    document.querySelectorAll(
+      "#taskList li.completed"
+    );
+
+  let percent = 0;
+
+  if(allTasks.length > 0){
+
+    percent = Math.round(
+      (
+        completedTasks.length /
+        allTasks.length
+      ) * 100
+    );
+  }
+
+  progressBar.style.width =
+    percent + "%";
+
+  progressText.innerText =
+    `${percent}% Completed`;
+}
+
+/* =========================================
+   ENTER KEY SUPPORT
+========================================= */
+
+taskInput.addEventListener(
+  "keypress",
+  function(e){
+
+    if(e.key === "Enter"){
+      addTask();
+    }
+  }
+);
+
+/* =========================================
+   POMODORO TIMER
+========================================= */
+
+let timeLeft = 1500;
+
+let timer;
+
+let isRunning = false;
+
+const timeDisplay =
+  document.getElementById("time");
+
+const modeDisplay =
+  document.getElementById("mode");
+
+/* UPDATE TIMER */
+
+function updateTimerDisplay(){
+
+  let minutes =
+    Math.floor(timeLeft / 60);
+
+  let seconds =
+    timeLeft % 60;
+
+  timeDisplay.innerText =
+
+    `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+}
+
+/* START TIMER */
+
+function startTimer(){
+
+  if(isRunning){
+    return;
+  }
+
+  isRunning = true;
+
+  timer = setInterval(()=>{
+
+    if(timeLeft > 0){
+
+      timeLeft--;
+
+      updateTimerDisplay();
     }
 
-    let doneTasks = tasks.filter(task => task.done).length;
-    let percent = Math.round((doneTasks / total) * 100);
+    else{
 
-    document.getElementById("progress").innerText =
-        `Progress: ${percent}% (${doneTasks}/${total} tasks completed)`;
+      clearInterval(timer);
+
+      alert(
+        "⏰ Session Completed!"
+      );
+
+      if(
+        modeDisplay.innerText ===
+        "Focus Time"
+      ){
+
+        modeDisplay.innerText =
+          "Break Time";
+
+        timeLeft = 300;
+      }
+
+      else{
+
+        modeDisplay.innerText =
+          "Focus Time";
+
+        timeLeft = 1500;
+      }
+
+      updateTimerDisplay();
+
+      isRunning = false;
+    }
+
+  },1000);
 }
 
-    
+/* PAUSE TIMER */
 
-// ⏱️ Timer
-let seconds = 0;
-let timer = null;
+function pauseTimer(){
 
-function startTimer() {
-    if (timer !== null) return; // prevent multiple timers
+  clearInterval(timer);
 
-    timer = setInterval(() => {
-        seconds++;
-        updateTime();
-    }, 1000);
+  isRunning = false;
 }
 
-function stopTimer() {
-    clearInterval(timer);
-    timer = null;
+/* RESET TIMER */
+
+function resetTimer(){
+
+  clearInterval(timer);
+
+  if(
+    modeDisplay.innerText ===
+    "Focus Time"
+  ){
+
+    timeLeft = 1500;
+  }
+
+  else{
+
+    timeLeft = 300;
+  }
+
+  updateTimerDisplay();
+
+  isRunning = false;
 }
 
-function updateTime() {
-    let hrs = Math.floor(seconds / 3600);
-    let mins = Math.floor((seconds % 3600) / 60);
-    let secs = seconds % 60;
+/* INITIAL TIMER DISPLAY */
 
-    document.getElementById("time").innerText =
-        `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
-}
+updateTimerDisplay();
 
-function pad(num) {
-    return num < 10 ? "0" + num : num;
+/* =========================================
+   CONFETTI EFFECT
+========================================= */
+
+function confetti(){
+
+  for(let i=0;i<40;i++){
+
+    let conf =
+      document.createElement("div");
+
+    conf.style.position = "fixed";
+
+    conf.style.width = "10px";
+
+    conf.style.height = "10px";
+
+    conf.style.background =
+      `hsl(${Math.random()*360},
+      100%,50%)`;
+
+    conf.style.left =
+      Math.random() *
+      window.innerWidth + "px";
+
+    conf.style.top = "-10px";
+
+    conf.style.borderRadius = "50%";
+
+    conf.style.zIndex = "999";
+
+    document.body.appendChild(conf);
+
+    let fall = setInterval(()=>{
+
+      conf.style.top =
+        parseInt(conf.style.top)
+        + 5 + "px";
+
+    },20);
+
+    setTimeout(()=>{
+
+      clearInterval(fall);
+
+      conf.remove();
+
+    },3000);
+  }
 }
