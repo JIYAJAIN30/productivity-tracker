@@ -5,8 +5,17 @@ function addTask() {
     let input = document.getElementById("taskInput");
     let taskText = input.value.trim();
 
-    if (taskText === "") return;
+    if (taskText === "") {
+        input.style.border = "2px solid red";
+        input.placeholder = "Task cannot be empty!";
+        setTimeout(() => {
+            input.style.border = "";
+            input.placeholder = "Enter your task";
+        }, 2000);
+        return;
+    }
 
+    input.style.border = "";
     tasks.push({ text: taskText, done: false });
     input.value = "";
     renderTasks();
@@ -66,14 +75,12 @@ function updateProgress() {
         `Progress: ${percent}% (${doneTasks}/${total} tasks completed)`;
 }
 
-    
-
 // ⏱️ Timer
 let seconds = 0;
 let timer = null;
 
 function startTimer() {
-    if (timer !== null) return; // prevent multiple timers
+    if (timer !== null) return;
 
     timer = setInterval(() => {
         seconds++;
