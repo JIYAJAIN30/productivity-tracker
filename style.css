@@ -1,33 +1,124 @@
-body {
-    font-family: Arial;
-    background: #f4f4f4;
+/* Basic Reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    min-height: 100vh;
+    color: white;
     text-align: center;
 }
 
-.container {
-    width: 300px;
-    margin: auto;
-    margin-top: 50px;
-    background: white;
+/* Navbar */
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(255,255,255,0.1);
+}
+
+/* Navbar Links */
+.nav-links{
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.nav-links a{
+    text-decoration: none;
+    color: white;
+}
+
+/* Main Container */
+.container{
+    width: 90%;
+    max-width: 400px;
+    margin: 50px auto;
+    background: rgba(255,255,255,0.15);
     padding: 20px;
     border-radius: 10px;
+
+    /* Simple Animation */
+    animation: fadeIn 1s;
 }
 
-input {
-    padding: 8px;
-    width: 70%;
+/* Input Box */
+.task-box{
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-button {
-    padding: 8px;
-    margin: 5px;
-    cursor: pointer;
-}
-
-li {
-    list-style: none;
-    margin: 10px 0;
-    background: #eee;
-    padding: 5px;
+input{
+    flex: 1;
+    padding: 10px;
+    border: none;
     border-radius: 5px;
+}
+
+/* Buttons */
+button{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: yellow;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+/* Button Hover Effect */
+button:hover{
+    transform: scale(1.05);
+}
+
+/* Task List */
+li{
+    list-style: none;
+    background: rgba(255,255,255,0.2);
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Timer */
+.timer{
+    margin-top: 20px;
+}
+
+/* Animation */
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media(max-width: 600px){
+
+    .navbar{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .task-box{
+        flex-direction: column;
+    }
+
+    button{
+        width: 100%;
+    }
 }
