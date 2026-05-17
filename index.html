@@ -1,31 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Productivity Tracker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Tracker • Focus & Discipline</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="background-gradient"></div>
+    <div class="ambient-glow"></div>
 
-    <div class="container">
-        <h1>📚 Productivity Tracker</h1>
-
-        <!-- Task Input -->
-        <input type="text" id="taskInput" placeholder="Enter your task">
-        <button onclick="addTask()">Add</button>
-
-        <!-- Task List -->
-        <ul id="taskList"></ul>
-
-        <!-- Progress -->
-        <h3 id="progress">Progress: 0% (0/0 tasks completed)</h3>
-
-        <!-- Timer -->
-        <div class="timer">
-            <h2 id="time">00:00:00</h2>
-            <button onclick="startTimer()">Start</button>
-            <button onclick="stopTimer()">Stop</button>
+    <main class="workspace">
+        <!-- Header Section -->
+        <div class="header-section">
+            <div class="header-content">
+                <h1 class="app-title">Productivity Tracker</h1>
+                <p class="app-subtitle">Focus. Execute. Achieve.</p>
+            </div>
         </div>
-    </div>
+
+        <!-- Main Container -->
+        <div class="main-container">
+            <!-- Focus Panel (Left) -->
+            <div class="focus-panel">
+                <!-- Timer Widget -->
+                <div class="premium-card timer-widget">
+                    <div class="card-header">
+                        <span class="card-title">Focus Session</span>
+                        <span class="card-badge">⏱️</span>
+                    </div>
+                    <div class="timer-display">
+                        <span id="time" class="time-value">00:00:00</span>
+                    </div>
+                    <div class="timer-controls">
+                        <button class="btn btn-primary" onclick="startTimer()">
+                            <span class="btn-icon">▶</span>
+                            <span>Start</span>
+                        </button>
+                        <button class="btn btn-secondary" onclick="stopTimer()">
+                            <span class="btn-icon">⏸</span>
+                            <span>Pause</span>
+                        </button>
+                        <button class="btn btn-ghost" onclick="resetTimer()">
+                            <span class="btn-icon">↻</span>
+                            <span>Reset</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Progress Widget -->
+                <div class="premium-card progress-widget">
+                    <div class="card-header">
+                        <span class="card-title">Progress</span>
+                        <span class="card-badge">📊</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-circle">
+                            <svg class="progress-ring" width="140" height="140">
+                                <circle class="progress-ring-bg" cx="70" cy="70" r="60" />
+                                <circle class="progress-ring-fill" cx="70" cy="70" r="60" />
+                            </svg>
+                            <div class="progress-text">
+                                <span id="progressPercent" class="progress-value">0%</span>
+                                <span class="progress-label">completed</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-stats">
+                        <div class="stat">
+                            <span class="stat-label">Tasks Done</span>
+                            <span id="tasksDone" class="stat-value">0</span>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="stat">
+                            <span class="stat-label">Total</span>
+                            <span id="tasksTotal" class="stat-value">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task Panel (Right) -->
+            <div class="task-panel">
+                <!-- Input Section -->
+                <div class="premium-card input-section">
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="taskInput" 
+                            class="task-input" 
+                            placeholder="What will you accomplish today?"
+                            onkeypress="if(event.key==='Enter') addTask()"
+                        >
+                        <button class="btn-add" onclick="addTask()">
+                            <span class="btn-add-icon">+</span>
+                        </button>
+                    </div>
+                    <p class="input-hint">Press Enter or click + to add a new task</p>
+                </div>
+
+                <!-- Tasks Section -->
+                <div class="premium-card tasks-section">
+                    <div class="card-header">
+                        <span class="card-title">Active Tasks</span>
+                        <span id="taskCount" class="task-counter">0</span>
+                    </div>
+                    <ul id="taskList" class="task-list"></ul>
+                    <div id="emptyState" class="empty-state">
+                        <div class="empty-icon">✨</div>
+                        <p class="empty-text">No tasks yet. Add one to get started.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
