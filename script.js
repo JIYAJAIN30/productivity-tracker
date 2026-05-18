@@ -98,3 +98,24 @@ function updateTime() {
 function pad(num) {
     return num < 10 ? "0" + num : num;
 }
+
+const progressBar = document.getElementById("progressBar");
+
+function updateProgress() {
+    const totalTasks = tasks.length;
+    const completedTasks = tasks.filter(task => task.completed).length;
+
+    const progressPercent =
+        totalTasks === 0 ? 0 : (completedTasks / totalTasks) * 100;
+
+    progressText.innerText =
+        `Progress: ${Math.round(progressPercent)}%`;
+
+    progressBar.style.width = `${progressPercent}%`;
+
+    if (progressPercent === 100) {
+        progressBar.style.background = "green";
+    } else {
+        progressBar.style.background = "#4caf50";
+    }
+}
