@@ -1,89 +1,132 @@
-let tasks = [];
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-// ➤ Add Task
+// -------------------- SAVE --------------------
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// -------------------- ADD TASK --------------------
 function addTask() {
     let input = document.getElementById("taskInput");
-    let taskText = input.value.trim();
+    let text = input.value.trim();
+    let priority = document.getElementById("prioritySelect")?.value || "Medium";
 
-    if (taskText === "") return;
+    if (!text) return;
 
-    tasks.push({ text: taskText, done: false });
+    tasks.push({
+        text,
+        done: false,
+        priority,
+        createdAt: Date.now()
+    });
+
     input.value = "";
+    saveTasks();
     renderTasks();
 }
 
-// ➤ Render Tasks
-function renderTasks() {
+// -------------------- RENDER --------------------
+function renderTasks(filter = "all") {
     let list = document.getElementById("taskList");
     list.innerHTML = "";
 
-    tasks.forEach((task, index) => {
+    let filtered = tasks.filter(task => {
+        if (filter === "active") return !task.done;
+        if (filter === "done") return task.done;
+        return true;
+    });
+
+    filtered.forEach((task, index) => {
         let li = document.createElement("li");
 
+        let priorityColor =
+            task.priority === "High" ? "red" :
+            task.priority === "Medium" ? "orange" : "green";
+
         li.innerHTML = `
+            <span style="color:${priorityColor}">
+                [${task.priority}]
+            </span>
             ${task.text}
+
             <button onclick="toggleTask(${index})">✔</button>
+            <button onclick="editTask(${index})">✏️</button>
             <button onclick="deleteTask(${index})">❌</button>
         `;
 
         if (task.done) {
             li.style.textDecoration = "line-through";
-            li.style.color = "gray";
+            li.style.opacity = "0.6";
         }
 
         list.appendChild(li);
     });
 
     updateProgress();
+    saveTasks();
 }
 
-// ➤ Toggle Task
+// -------------------- TOGGLE --------------------
 function toggleTask(index) {
     tasks[index].done = !tasks[index].done;
     renderTasks();
 }
 
-// ➤ Delete Task
+// -------------------- DELETE --------------------
 function deleteTask(index) {
     tasks.splice(index, 1);
     renderTasks();
 }
 
-// ➤ Progress Calculation
+// -------------------- EDIT --------------------
+function editTask(index) {
+    let newText = prompt("Edit task:", tasks[index].text);
+    if (newText !== null && newText.trim() !== "") {
+        tasks[index].text = newText.trim();
+        renderTasks();
+    }
+}
+
+// -------------------- PROGRESS --------------------
 function updateProgress() {
     let total = tasks.length;
+    let done = tasks.filter(t => t.done).length;
 
-    if (total === 0) {
-        document.getElementById("progress").innerText =
-            "Progress: 0% (0/0 tasks completed)";
-        return;
-    }
-
-    let doneTasks = tasks.filter(task => task.done).length;
-    let percent = Math.round((doneTasks / total) * 100);
+    let percent = total === 0 ? 0 : Math.round((done / total) * 100);
 
     document.getElementById("progress").innerText =
-        `Progress: ${percent}% (${doneTasks}/${total} tasks completed)`;
+        `Progress: ${percent}% (${done}/${total})`;
 }
 
-    
+// -------------------- FILTER BUTTONS --------------------
+function showAll() { renderTasks("all"); }
+function showActive() { renderTasks("active"); }
+function showDone() { renderTasks("done"); }
 
-// ⏱️ Timer
+// -------------------- TIMER (PAUSE + RESUME) --------------------
 let seconds = 0;
 let timer = null;
+let running = false;
 
-function startTimer() {
-    if (timer !== null) return; // prevent multiple timers
-
-    timer = setInterval(() => {
-        seconds++;
-        updateTime();
-    }, 1000);
+function toggleTimer() {
+    if (running) {
+        clearInterval(timer);
+        timer = null;
+    } else {
+        timer = setInterval(() => {
+            seconds++;
+            updateTime();
+        }, 1000);
+    }
+    running = !running;
 }
 
-function stopTimer() {
+function resetTimer() {
     clearInterval(timer);
     timer = null;
+    running = false;
+    seconds = 0;
+    updateTime();
 }
 
 function updateTime() {
@@ -98,3 +141,7 @@ function updateTime() {
 function pad(num) {
     return num < 10 ? "0" + num : num;
 }
+
+// Initial render
+renderTasks();
+updateTime();
