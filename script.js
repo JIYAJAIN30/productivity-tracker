@@ -51,22 +51,22 @@ function deleteTask(index) {
 
 // ➤ Progress Calculation
 function updateProgress() {
-    let total = tasks.length;
+    const progressElement = document.getElementById("progress");
+    const total = tasks.length;
 
+    // Case 1: No tasks at all
     if (total === 0) {
-        document.getElementById("progress").innerText =
-            "Progress: 0% (0/0 tasks completed)";
+        progressElement.innerText = "No tasks yet!";
         return;
     }
 
-    let doneTasks = tasks.filter(task => task.done).length;
-    let percent = Math.round((doneTasks / total) * 100);
+    // Case 2: Some tasks exist
+    const doneTasks = tasks.reduce((count, task) => count + (task.done ? 1 : 0), 0);
+    const percent = Math.round((doneTasks / total) * 100);
 
-    document.getElementById("progress").innerText =
-        `Progress: ${percent}% (${doneTasks}/${total} tasks completed)`;
+    progressElement.innerText = `Progress: ${percent}% (${doneTasks}/${total} tasks completed)`;
 }
-
-    
+   
 
 // ⏱️ Timer
 let seconds = 0;
