@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productivity Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="container">
+
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <button id="theme-toggle">🌙 Dark Mode</button>
+        </div>
+
+        <!-- Heading -->
         <h1>📚 Productivity Tracker</h1>
 
         <!-- Task Input -->
-        <input type="text" id="taskInput" placeholder="Enter your task">
-        <button onclick="addTask()">Add</button>
+        <div class="task-input">
+            <input type="text" id="taskInput" placeholder="Enter your task">
+            <button onclick="addTask()">Add</button>
+        </div>
 
         <!-- Task List -->
         <ul id="taskList"></ul>
@@ -21,12 +34,18 @@
 
         <!-- Timer -->
         <div class="timer">
-            <h2 id="time">00:00:00</h2>
-            <button onclick="startTimer()">Start</button>
-            <button onclick="stopTimer()">Stop</button>
+            <h2 id="timer">00:00:00</h2>
+
+            <div class="timer-buttons">
+                <button onclick="startTimer()">Start</button>
+                <button onclick="stopTimer()">Stop</button>
+            </div>
         </div>
+
     </div>
 
     <script src="script.js"></script>
+
 </body>
+
 </html>
