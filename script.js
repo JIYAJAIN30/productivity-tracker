@@ -1,5 +1,15 @@
 let tasks = [];
 
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("addTaskButton").addEventListener("click", addTask);
+    document
+        .getElementById("startTimerButton")
+        .addEventListener("click", startTimer);
+    document
+        .getElementById("stopTimerButton")
+        .addEventListener("click", stopTimer);
+});
+
 // ➤ Add Task
 function addTask() {
     let input = document.getElementById("taskInput");
@@ -15,16 +25,26 @@ function addTask() {
 // ➤ Render Tasks
 function renderTasks() {
     let list = document.getElementById("taskList");
-    list.innerHTML = "";
+    list.replaceChildren();
 
     tasks.forEach((task, index) => {
         let li = document.createElement("li");
+        let taskLabel = document.createElement("span");
+        let toggleButton = document.createElement("button");
+        let deleteButton = document.createElement("button");
 
-        li.innerHTML = `
-            ${task.text}
-            <button onclick="toggleTask(${index})">✔</button>
-            <button onclick="deleteTask(${index})">❌</button>
-        `;
+        taskLabel.textContent = task.text;
+        toggleButton.type = "button";
+        toggleButton.textContent = "✔";
+        toggleButton.setAttribute("aria-label", `Toggle ${task.text}`);
+        toggleButton.addEventListener("click", () => toggleTask(index));
+
+        deleteButton.type = "button";
+        deleteButton.textContent = "❌";
+        deleteButton.setAttribute("aria-label", `Delete ${task.text}`);
+        deleteButton.addEventListener("click", () => deleteTask(index));
+
+        li.append(taskLabel, toggleButton, deleteButton);
 
         if (task.done) {
             li.style.textDecoration = "line-through";
@@ -65,8 +85,6 @@ function updateProgress() {
     document.getElementById("progress").innerText =
         `Progress: ${percent}% (${doneTasks}/${total} tasks completed)`;
 }
-
-    
 
 // ⏱️ Timer
 let seconds = 0;
