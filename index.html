@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Productivity Tracker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zen Mode - Productivity Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
-        <h1>📚 Productivity Tracker</h1>
+        <div id="zenStatus" class="zen-badge">
+            <span class="zen-dot"></span>
+            <span id="zenText">Zen Idle</span>
+        </div>
 
-        <!-- Task Input -->
-        <input type="text" id="taskInput" placeholder="Enter your task">
-        <button onclick="addTask()">Add</button>
+        <h1>Productivity Tracker</h1>
 
-        <!-- Task List -->
+        <div class="task-input-container">
+            <input type="text" id="taskInput" placeholder="Enter your task" onkeydown="if(event.key === 'Enter') addTask()">
+            <select id="taskPriority" title="Select Priority">
+                <option value="High">High</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            <button onclick="addTask()">Add</button>
+        </div>
+
         <ul id="taskList"></ul>
 
-        <!-- Progress -->
         <h3 id="progress">Progress: 0% (0/0 tasks completed)</h3>
 
-        <!-- Timer -->
         <div class="timer">
-            <h2 id="time">00:00:00</h2>
-            <button onclick="startTimer()">Start</button>
-            <button onclick="stopTimer()">Stop</button>
+            <div class="timer-presets">
+                <button onclick="setTimerPreset(25)" class="preset-btn">Focus (25m)</button>
+                <button onclick="setTimerPreset(5)" class="preset-btn">Break (5m)</button>
+                <button onclick="setCustomPreset()" class="preset-btn">Custom</button>
+            </div>
+            
+            <h2 id="time">25:00</h2>
+            
+            <button onclick="startTimer()" class="start-btn">Start</button>
+            <button onclick="stopTimer()" class="stop-btn">Stop</button>
+            <button onclick="resetTimer()" class="reset-btn">Reset</button>
         </div>
     </div>
 

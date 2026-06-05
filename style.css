@@ -1,4 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
 body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: radial-gradient(circle at top, #fafaf9, #f4f4f5);
+    text-align: center;
+    color: #18181b;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 360px;
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(228, 228, 231, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #18181b;
+    letter-spacing: -0.5px;
+}
+
+/* Zen Status Indicator */
+.zen-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #f4f4f5;
+    color: #71717a;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.zen-badge.active {
+    background: #e0f2fe;
+    color: #0369a1;
+    box-shadow: 0 0 12px rgba(14, 165, 233, 0.2);
+}
+
+.zen-dot {
+    width: 6px;
+    height: 6px;
+    background: #71717a;
+    border-radius: 50%;
+}
+
+.zen-badge.active .zen-dot {
+    background: #0ea5e9;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.9); opacity: 0.6; }
+    50% { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+/* Input container aligning input, dropdown, and button */
+.task-input-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.task-input-container input {
+    flex: 1;
+    min-width: 100px;
+    padding: 12px 14px;
+    border: 1.5px solid #e4e4e7;
+    border-radius: 12px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.task-input-container input:focus {
+    border-color: #0ea5e9;
+}
+
+.task-input-container select {
+    padding: 12px;
+    border: 1.5px solid #e4e4e7;
+    border-radius: 12px;
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+    transition: border-color 0.2s ease;
+}
+
+.task-input-container select:focus {
+    border-color: #0ea5e9;
+}
+
+button {
+    padding: 12px 20px;
+    cursor: pointer;
+    border: none;
+    background-color: #18181b;
+    color: #ffffff;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 12px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background-color: #27272a;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Task List Styling */
+ul {
+    padding: 0;
+    margin: 0 0 24px 0;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #1e293b, #0f172a);
     display: flex;
@@ -76,6 +211,142 @@ ul {
 li {
     list-style: none;
     margin: 10px 0;
+    background: #fafaf9;
+    padding: 12px 16px;
+    border-radius: 14px;
+    border: 1px solid #f4f4f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+li div {
+    display: flex;
+    align-items: center;
+}
+
+li span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+li button {
+    padding: 6px 10px;
+    margin: 0 2px;
+    font-size: 12px;
+    border-radius: 8px;
+    background: transparent;
+    color: #71717a;
+    border: 1px solid #e4e4e7;
+}
+
+li button:hover {
+    background: #f4f4f5;
+    color: #18181b;
+}
+
+/* Priority Badges styling */
+.priority-badge {
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    margin-left: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.priority-badge.high {
+    background: #fef2f2;
+    color: #ef4444;
+}
+
+.priority-badge.medium {
+    background: #fffbeb;
+    color: #f59e0b;
+}
+
+.priority-badge.low {
+    background: #f0fdf4;
+    color: #22c55e;
+}
+
+/* Progress Text */
+#progress {
+    font-size: 13px;
+    font-weight: 500;
+    color: #71717a;
+    margin-bottom: 24px;
+}
+
+/* Timer presets */
+.timer-presets {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.preset-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+    background: #f4f4f5;
+    color: #52525b;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.preset-btn:hover {
+    background: #e4e4e7;
+    color: #18181b;
+}
+
+/* Time Display */
+#time {
+    font-size: 54px;
+    font-weight: 700;
+    color: #18181b;
+    margin: 16px 0 24px 0;
+    letter-spacing: -2px;
+}
+
+/* Controls */
+.timer button {
+    padding: 12px 24px;
+    font-size: 14px;
+}
+
+.timer button.start-btn {
+    background: #0ea5e9;
+    color: #fff;
+}
+
+.timer button.start-btn:hover {
+    background: #0284c7;
+}
+
+.timer button.stop-btn {
+    background: #f4f4f5;
+    color: #18181b;
+    border: 1px solid #e4e4e7;
+}
+
+.timer button.stop-btn:hover {
+    background: #e4e4e7;
+}
+
+.timer button.reset-btn {
+    background: transparent;
+    color: #71717a;
+}
+
+.timer button.reset-btn:hover {
+    color: #18181b;
     background: #f1f5f9;
     padding: 12px;
     border-radius: 10px;
