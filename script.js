@@ -86,6 +86,13 @@ function stopTimer() {
     timer = null;
 }
 
+function resetTimer() {
+    clearInterval(timer);
+    timer = null;
+    seconds = 0;
+    updateTime();
+}
+
 function updateTime() {
     let hrs = Math.floor(seconds / 3600);
     let mins = Math.floor((seconds % 3600) / 60);
@@ -98,3 +105,5 @@ function updateTime() {
 function pad(num) {
     return num < 10 ? "0" + num : num;
 }
+
+updateTime();
