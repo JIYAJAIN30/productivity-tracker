@@ -134,6 +134,78 @@ button:active {
 ul {
     padding: 0;
     margin: 0 0 24px 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #111827;
+}
+
+input {
+    padding: 12px;
+    width: 65%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
+}
+
+input:hover {
+    border-color: #2563eb;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    margin: 5px;
+}
+
+button:hover {
+    background: #1d4ed8;
+    transform: scale(1.05);
+}
+
+ul {
+    padding: 0;
+    margin-top: 20px;
 }
 
 li {
@@ -275,4 +347,56 @@ li button:hover {
 
 .timer button.reset-btn:hover {
     color: #18181b;
+    background: #f1f5f9;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: left;
+    transition: 0.3s ease;
+}
+
+li:hover {
+    background: #dbeafe;
+    transform: translateY(-2px);
+}
+
+#progress {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #1e293b;
+}
+
+#timer {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #2563eb;
+    letter-spacing: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    input {
+        width: 100%;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    #timer {
+        font-size: 1.5rem;
+    }
 }
