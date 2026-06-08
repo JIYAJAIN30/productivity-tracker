@@ -66,7 +66,6 @@ function updateProgress() {
         `Progress: ${percent}% (${doneTasks}/${total} tasks completed)`;
 }
 
-    
 
 // ⏱️ Timer
 let seconds = 0;
@@ -84,6 +83,13 @@ function startTimer() {
 function stopTimer() {
     clearInterval(timer);
     timer = null;
+}
+
+// Fix #36: Added resetTimer so users don't need a full page refresh to reset
+function resetTimer() {
+    stopTimer();
+    seconds = 0;
+    updateTime();
 }
 
 function updateTime() {
