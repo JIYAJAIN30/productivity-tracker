@@ -1,4 +1,12 @@
-let tasks = [];
+// =========================
+// Task Storage
+// =========================
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+// Save Tasks
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
 // ➤ Add Task
 function addTask() {
@@ -7,7 +15,12 @@ function addTask() {
 
     if (taskText === "") return;
 
-    tasks.push({ text: taskText, done: false });
+    tasks.push({
+        text: taskText,
+        done: false
+    });
+
+    saveTasks();
     input.value = "";
     renderTasks();
 }
@@ -40,12 +53,14 @@ function renderTasks() {
 // ➤ Toggle Task
 function toggleTask(index) {
     tasks[index].done = !tasks[index].done;
+    saveTasks();
     renderTasks();
 }
 
 // ➤ Delete Task
 function deleteTask(index) {
     tasks.splice(index, 1);
+    saveTasks();
     renderTasks();
 }
 
@@ -66,26 +81,43 @@ function updateProgress() {
         `Progress: ${percent}% (${doneTasks}/${total} tasks completed)`;
 }
 
-    
-
-// ⏱️ Timer
-let seconds = 0;
+// =========================
+// Timer Storage
+// =========================
+let seconds = Number(localStorage.getItem("timer")) || 0;
 let timer = null;
 
+// Save Timer
+function saveTimer() {
+    localStorage.setItem("timer", seconds);
+}
+
+// ➤ Start Timer
 function startTimer() {
-    if (timer !== null) return; // prevent multiple timers
+    if (timer !== null) return;
 
     timer = setInterval(() => {
         seconds++;
+        saveTimer();
         updateTime();
     }, 1000);
 }
 
+// ➤ Stop Timer
 function stopTimer() {
     clearInterval(timer);
     timer = null;
 }
 
+// ➤ Reset Timer
+function resetTimer() {
+    stopTimer();
+    seconds = 0;
+    saveTimer();
+    updateTime();
+}
+
+// ➤ Update Timer Display
 function updateTime() {
     let hrs = Math.floor(seconds / 3600);
     let mins = Math.floor((seconds % 3600) / 60);
@@ -95,6 +127,13 @@ function updateTime() {
         `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
 }
 
+// ➤ Format Numbers
 function pad(num) {
     return num < 10 ? "0" + num : num;
 }
+
+// =========================
+// Load Saved Data
+// =========================
+renderTasks();
+updateTime();
