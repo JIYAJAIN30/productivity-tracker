@@ -1,4 +1,12 @@
-let tasks = [];
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+// ➤ Save Tasks to LocalStorage
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// Render tasks on initial load
+renderTasks();
 
 // ➤ Add Task
 function addTask() {
@@ -9,6 +17,7 @@ function addTask() {
 
     tasks.push({ text: taskText, done: false });
     input.value = "";
+    saveTasks();
     renderTasks();
 }
 
@@ -40,12 +49,14 @@ function renderTasks() {
 // ➤ Toggle Task
 function toggleTask(index) {
     tasks[index].done = !tasks[index].done;
+    saveTasks();
     renderTasks();
 }
 
 // ➤ Delete Task
 function deleteTask(index) {
     tasks.splice(index, 1);
+    saveTasks();
     renderTasks();
 }
 
