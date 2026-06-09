@@ -15,13 +15,20 @@ A high-performance, minimalist productivity tool designed to help you stay organ
 - **🚀 Dynamic Task Management**: 
     - Effortlessly add new tasks.
     - Mark tasks as completed with a single click.
-    - Remove tasks you no longer need.
+    - Edit or remove tasks you no longer need.
 - **📊 Real-time Progress Tracking**: 
     - Stay motivated with a live progress indicator that calculates your completion percentage instantly.
 - **⏱️ Precision Timer**: 
     - Built-in stopwatch to track the time spent on your productivity sessions.
 - **📱 Clean & Responsive UI**: 
     - A distraction-free interface that works across various devices.
+- **🌙 Dark Mode Toggle**:  
+    - Switch between light and dark themes with smooth transitions.
+- **🧭 Navigation Tabs**:  
+    - Dedicated pages for **Tasks**, **Progress**, and **Timer** for better organization.
+- **⚖️ Sticky Footer**:  
+    - Professional footer with copyright and GitHub profile link.
+
 
 ## 🛠️ Tech Stack
 

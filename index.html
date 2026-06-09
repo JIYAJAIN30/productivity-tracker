@@ -5,28 +5,42 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="container">
+    <header>
         <h1>📚 Productivity Tracker</h1>
+        <nav>
+            <a href="#" onclick="showPage('tasks')">Tasks</a>
+            <a href="#" onclick="showPage('progress')">Progress</a>
+            <a href="#" onclick="showPage('timer')">Timer</a>
+            <button onclick="toggleDarkMode()">🌙 Dark Mode</button>
+        </nav>
+    </header>
 
-        <!-- Task Input -->
-        <input type="text" id="taskInput" placeholder="Enter your task">
-        <button onclick="addTask()">Add</button>
+    <main>
+        <!-- Tasks Page -->
+        <section id="tasks" class="page active">
+            <input type="text" id="taskInput" placeholder="Enter your task">
+            <button onclick="addTask()">Add</button>
+            <ul id="taskList"></ul>
+        </section>
 
-        <!-- Task List -->
-        <ul id="taskList"></ul>
+        <!-- Progress Page -->
+        <section id="progress" class="page">
+            <h3 id="progressText">Progress: 0% (0/0 tasks completed)</h3>
+        </section>
 
-        <!-- Progress -->
-        <h3 id="progress">Progress: 0% (0/0 tasks completed)</h3>
-
-        <!-- Timer -->
-        <div class="timer">
+        <!-- Timer Page -->
+        <section id="timer" class="page">
             <h2 id="time">00:00:00</h2>
             <button onclick="startTimer()">Start</button>
             <button onclick="stopTimer()">Stop</button>
-        </div>
-    </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 <a href="https://github.com/JIYAJAIN30" target="_blank">JIYAJAIN30</a>. All rights reserved.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
 </html>
+
