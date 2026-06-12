@@ -85,6 +85,12 @@ function stopTimer() {
     clearInterval(timer);
     timer = null;
 }
+function resetTimer() {
+    clearInterval(timer);
+    timer = null;
+    seconds = 0;
+    document.getElementById("time").innerText = "00:00:00";
+}
 
 function updateTime() {
     let hrs = Math.floor(seconds / 3600);
@@ -94,6 +100,7 @@ function updateTime() {
     document.getElementById("time").innerText =
         `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
 }
+
 
 function pad(num) {
     return num < 10 ? "0" + num : num;
