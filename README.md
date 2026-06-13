@@ -6,6 +6,20 @@ A high-performance, minimalist productivity tool designed to help you stay organ
 
 ---
 
+## 📑 Table of Contents
+
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Tech Stack](#-tech-stack)
+- [Getting Started](#-getting-started)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Contributing](#-contributing)
+- [Rules for Contributing](#-rules-for-contributing)
+- [License](#-license)
+
+---
+
 ## 🌟 Overview
 
 **Productivity Tracker** is built for those who value simplicity and effectiveness. It combines the classic functionality of a To-Do list with a precise timer and dynamic progress tracking. No more juggling between apps—manage your tasks and track your work hours in one place.
