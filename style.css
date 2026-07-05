@@ -81,11 +81,30 @@ li {
     border-radius: 10px;
     text-align: left;
     transition: 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
 }
 
 li:hover {
     background: #dbeafe;
     transform: translateY(-2px);
+}
+
+.task-text {
+    flex: 1;
+    word-break: break-word;
+}
+
+.task-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.task-actions button {
+    padding: 8px 10px;
+    margin: 0;
 }
 
 #progress {

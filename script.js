@@ -21,9 +21,12 @@ function renderTasks() {
         let li = document.createElement("li");
 
         li.innerHTML = `
-            ${task.text}
-            <button onclick="toggleTask(${index})">✔</button>
-            <button onclick="deleteTask(${index})">❌</button>
+            <span class="task-text">${task.text}</span>
+            <div class="task-actions">
+                <button onclick="editTask(${index})">✏️</button>
+                <button onclick="toggleTask(${index})">✔</button>
+                <button onclick="deleteTask(${index})">❌</button>
+            </div>
         `;
 
         if (task.done) {
@@ -35,6 +38,20 @@ function renderTasks() {
     });
 
     updateProgress();
+}
+
+// ➤ Edit Task
+function editTask(index) {
+    let updatedText = prompt("Edit your task:", tasks[index].text);
+
+    if (updatedText === null) return;
+
+    let trimmedText = updatedText.trim();
+
+    if (trimmedText !== "") {
+        tasks[index].text = trimmedText;
+        renderTasks();
+    }
 }
 
 // ➤ Toggle Task
