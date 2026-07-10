@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Productivity Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="container">
         <h1>📚 Productivity Tracker</h1>
 
         <!-- Task Input -->
-        <input type="text" id="taskInput" placeholder="Enter your task">
-        <button onclick="addTask()">Add</button>
+        <div class="input-group">
+            <input type="text" id="taskInput" placeholder="Enter your task" autocomplete="off">
+            <select id="categoryInput">
+        <option value="General">General</option>
+        <option value="Work">Work</option>
+        <option value="Study">Study</option>
+    </select>
+            <button onclick="addTask()">Add</button>
+        </div>
+
+        <div class="filter-buttons" style="margin: 10px 0;">
+            <button onclick="filterTasks('All')">All</button>
+            <button onclick="filterTasks('Work')">Work</button>
+            <button onclick="filterTasks('Study')">Study</button>
+        </div>
 
         <!-- Task List -->
         <ul id="taskList"></ul>
@@ -29,4 +44,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

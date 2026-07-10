@@ -3,11 +3,12 @@ let tasks = [];
 // ➤ Add Task
 function addTask() {
     let input = document.getElementById("taskInput");
+    let category = document.getElementById("categoryInput").value;
     let taskText = input.value.trim();
 
     if (taskText === "") return;
 
-    tasks.push({ text: taskText, done: false });
+    tasks.push({ text: taskText, done: false, category: document.getElementById("categoryInput").value });
     input.value = "";
     renderTasks();
 }
@@ -18,22 +19,23 @@ function renderTasks() {
     list.innerHTML = "";
 
     tasks.forEach((task, index) => {
-        let li = document.createElement("li");
+        if (currentFilter === "All" || task.category === currentFilter) {
+            let li = document.createElement("li");
 
-        li.innerHTML = `
-            ${task.text}
+            li.innerHTML = `
+        <span>[${task.category}]${task.text}</span>
             <button onclick="toggleTask(${index})">✔</button>
             <button onclick="deleteTask(${index})">❌</button>
         `;
 
-        if (task.done) {
-            li.style.textDecoration = "line-through";
-            li.style.color = "gray";
+            if (task.done) {
+                li.style.textDecoration = "line-through";
+                li.style.color = "gray";
+            }
+
+            list.appendChild(li);
         }
-
-        list.appendChild(li);
     });
-
     updateProgress();
 }
 
@@ -66,7 +68,7 @@ function updateProgress() {
         `Progress: ${percent}% (${doneTasks}/${total} tasks completed)`;
 }
 
-    
+
 
 // ⏱️ Timer
 let seconds = 0;
@@ -97,4 +99,11 @@ function updateTime() {
 
 function pad(num) {
     return num < 10 ? "0" + num : num;
+}
+
+let currentFilter = "All";
+
+function filterTasks(cat) {
+    currentFilter = cat;
+    renderTasks();
 }
