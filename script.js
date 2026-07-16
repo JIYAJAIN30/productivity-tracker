@@ -69,21 +69,31 @@ function updateProgress() {
     
 
 // ⏱️ Timer
-let seconds = 0;
+let seconds = 0;          // total elapsed seconds (displayed)
 let timer = null;
+let startTime = null;     // epoch ms when the current run segment started
+let accumulated = 0;      // elapsed seconds counted before the current run segment
 
 function startTimer() {
     if (timer !== null) return; // prevent multiple timers
 
+    startTime = Date.now();
     timer = setInterval(() => {
-        seconds++;
+        // derive elapsed from the clock so background-tab throttling can't drift it
+        seconds = accumulated + Math.floor((Date.now() - startTime) / 1000);
         updateTime();
     }, 1000);
 }
 
 function stopTimer() {
+    if (timer === null) return;
+
+    // freeze elapsed time so a later start resumes from here (no drift, no reset)
+    accumulated += Math.floor((Date.now() - startTime) / 1000);
+    seconds = accumulated;
     clearInterval(timer);
     timer = null;
+    updateTime();
 }
 
 function updateTime() {
