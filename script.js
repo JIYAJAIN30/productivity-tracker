@@ -1,5 +1,13 @@
 let tasks = [];
 
+// ➤ Allow adding task with Enter key
+document.getElementById("taskInput").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        addTask();
+    }
+});
+
 // ➤ Add Task
 function addTask() {
     let input = document.getElementById("taskInput");
