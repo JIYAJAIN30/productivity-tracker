@@ -15,12 +15,12 @@ function addTask() {
 // ➤ Render Tasks
 function renderTasks() {
     let list = document.getElementById("taskList");
-    list.innerHTML = "";
+    list.textContent = "";
 
     tasks.forEach((task, index) => {
         let li = document.createElement("li");
 
-        li.innerHTML = `
+        li.textContent = `
             ${task.text}
             <button onclick="toggleTask(${index})">✔</button>
             <button onclick="deleteTask(${index})">❌</button>
