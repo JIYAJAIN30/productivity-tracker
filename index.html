@@ -1,30 +1,64 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productivity Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
-        <h1>📚 Productivity Tracker</h1>
 
-        <!-- Task Input -->
-        <input type="text" id="taskInput" placeholder="Enter your task">
-        <button onclick="addTask()">Add</button>
+        <!-- Header -->
+        <header>
+            <h1>📚 Productivity Tracker</h1>
+            <p class="subtitle">Stay focused, organized, and productive every day.</p>
+        </header>
+
+        <!-- Task Input Section -->
+        <section class="task-section">
+            <input 
+                type="text" 
+                id="taskInput" 
+                placeholder="Enter your task here..."
+                aria-label="Task Input"
+            >
+
+            <button onclick="addTask()">➕ Add Task</button>
+        </section>
+
+        <!-- Task Counter -->
+        <div class="task-counter">
+            <p>Total Tasks: <span id="taskCount">0</span></p>
+        </div>
 
         <!-- Task List -->
         <ul id="taskList"></ul>
 
-        <!-- Progress -->
-        <h3 id="progress">Progress: 0% (0/0 tasks completed)</h3>
+        <!-- Progress Section -->
+        <section class="progress-section">
+            <h3 id="progress">📊 Progress: 0% (0/0 tasks completed)</h3>
+        </section>
 
-        <!-- Timer -->
-        <div class="timer">
+        <!-- Timer Section -->
+        <section class="timer">
+            <h2>⏱️ Focus Timer</h2>
             <h2 id="time">00:00:00</h2>
-            <button onclick="startTimer()">Start</button>
-            <button onclick="stopTimer()">Stop</button>
-        </div>
+
+            <div class="timer-buttons">
+                <button onclick="startTimer()">▶ Start</button>
+                <button onclick="stopTimer()">⏹ Stop</button>
+                <button onclick="resetTimer()">🔄 Reset</button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Made with ❤️ for productivity and focus.</p>
+        </footer>
+
     </div>
 
     <script src="script.js"></script>

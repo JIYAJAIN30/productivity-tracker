@@ -66,6 +66,14 @@ function updateProgress() {
         `Progress: ${percent}% (${doneTasks}/${total} tasks completed)`;
 }
 
+function resetTimer() {
+    clearInterval(timer);
+
+    timer = null;
+    seconds = 0;
+
+    updateTime();
+}
     
 
 // ⏱️ Timer

@@ -1,40 +1,52 @@
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #1e293b, #0f172a);
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
-    padding: 20px;
     box-sizing: border-box;
     overflow-x: hidden;
 }
 
+/* Main Container */
 .container {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 20px;
-    width: 100%;
+    width: 90%;
     max-width: 420px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    margin: 50px auto;
+    background: #1e1e1e;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .container:hover {
     transform: translateY(-5px);
 }
 
+/* Heading */
 h1 {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #111827;
+    color: #ffffff;
 }
 
+.subtitle {
+    font-size: 14px;
+    color: #bbbbbb;
+    margin-bottom: 20px;
+}
+
+/* Input Section */
 input {
     padding: 12px;
-    width: 65%;
+    width: 70%;
     border-radius: 8px;
     border: 1px solid #ccc;
     outline: none;
@@ -47,12 +59,9 @@ input:focus {
     box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
 }
 
-input:hover {
-    border-color: #2563eb;
-}
-
+/* Buttons */
 button {
-    background: #2563eb;
+    background: #4caf50;
     color: white;
     border: none;
     padding: 12px 18px;
@@ -64,22 +73,18 @@ button {
 }
 
 button:hover {
-    background: #1d4ed8;
+    background: #45a049;
     transform: scale(1.05);
 }
 
-ul {
-    padding: 0;
-    margin-top: 20px;
-}
-
+/* Task List */
 li {
     list-style: none;
     margin: 10px 0;
-    background: #f1f5f9;
-    padding: 12px;
-    border-radius: 10px;
-    text-align: left;
+    background: #2a2a2a;
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
     transition: 0.3s ease;
 }
 
@@ -88,19 +93,25 @@ li:hover {
     transform: translateY(-2px);
 }
 
-#progress {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin: 20px 0;
-    color: #1e293b;
+/* Progress Section */
+.progress-section {
+    margin-top: 20px;
 }
 
-#timer {
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 20px 0;
-    color: #2563eb;
-    letter-spacing: 2px;
+/* Timer Section */
+.timer {
+    margin-top: 20px;
+}
+
+.timer-buttons {
+    margin-top: 10px;
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #aaaaaa;
 }
 
 /* Responsive Design */
