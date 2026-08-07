@@ -1,26 +1,40 @@
 body {
     font-family: Arial, sans-serif;
-    background: #121212;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
     color: white;
     text-align: center;
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 /* Main Container */
 .container {
     width: 90%;
-    max-width: 400px;
+    max-width: 420px;
     margin: 50px auto;
     background: #1e1e1e;
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.container:hover {
+    transform: translateY(-5px);
 }
 
 /* Heading */
 h1 {
-    margin-bottom: 10px;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ffffff;
 }
 
 .subtitle {
@@ -31,23 +45,31 @@ h1 {
 
 /* Input Section */
 input {
-    padding: 10px;
+    padding: 12px;
     width: 70%;
-    border: none;
     border-radius: 8px;
+    border: 1px solid #ccc;
     outline: none;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
 }
 
 /* Buttons */
 button {
-    padding: 10px 12px;
-    margin: 5px;
-    border: none;
-    border-radius: 8px;
     background: #4caf50;
     color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    margin: 5px;
 }
 
 button:hover {
@@ -63,6 +85,12 @@ li {
     padding: 10px;
     border-radius: 8px;
     color: white;
+    transition: 0.3s ease;
+}
+
+li:hover {
+    background: #dbeafe;
+    transform: translateY(-2px);
 }
 
 /* Progress Section */
@@ -86,19 +114,29 @@ footer {
     color: #aaaaaa;
 }
 
-/* Mobile Responsive */
-@media (max-width: 500px) {
+/* Responsive Design */
+@media (max-width: 768px) {
     .container {
         width: 95%;
-        padding: 15px;
+        padding: 20px;
     }
 
     input {
         width: 100%;
         margin-bottom: 10px;
+        box-sizing: border-box;
     }
 
     button {
         width: 100%;
+        margin-top: 10px;
+    }
+
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    #timer {
+        font-size: 1.5rem;
     }
 }
